@@ -1,6 +1,6 @@
-#MasterMind
+# MasterMind
 
-##Introduction
+## Introduction
 Mastermind is a popular game for people born in the 80-90s.
 <br/>
 This game follow a simple principle. In the physic version 
@@ -21,19 +21,19 @@ and attempts.<br/> But your opponent
 The UI is designed from Qt version 5.15.1 running with c++14.
 
 ## Menu
-######1.Start Game
-######2.Load
-######3.Help
-######4.Parameters
-######5.Quit
+###### 1.Start Game
+###### 2.Load
+###### 3.Help
+###### 4.Parameters
+###### 5.Quit
 
 ## Game progress
 
 ## Difficulties available
 
 ## Parameters
-######1.Language
-######2.Number of attempts
-######3.Number of rounds
-######4.Number of colors available
-######5.Custom difficulty
+###### 1.Language
+###### 2.Number of attempts
+###### 3.Number of rounds
+###### 4.Number of colors available
+###### 5.Custom difficulty

@@ -17,8 +17,7 @@ class GameFrame : public QMainWindow{
 
     private:
         QWidget *frame;
-
-    void closeEvent(QCloseEvent *event) override;
+        void closeEvent(QCloseEvent *event) override;
 };
 
 
