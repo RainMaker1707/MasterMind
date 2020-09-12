@@ -10,6 +10,7 @@
 class FrameTools: public QWidget {
     public:
         static void centerFrame(QWidget *frame, int width, int height);
+        static QLabel *imageParser(const char str[], int width, int height);
 
 };
 

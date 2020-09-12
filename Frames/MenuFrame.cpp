@@ -20,17 +20,10 @@ MenuFrame::MenuFrame() : QWidget(){
     topLayout = new QHBoxLayout;
     rightTopLayout = new QVBoxLayout;
 
-    // init image
-    QImage img("img/board.png");
-    QImage img2 = img.scaled(350, 350, Qt::KeepAspectRatio);
-    QLabel *plotImg = new QLabel;
-    plotImg->setScaledContents(true);
-    plotImg->setPixmap(QPixmap::fromImage(img2));
-
     // setup and fill layouts
     setLayout(mainLayout);
     mainLayout->addLayout(topLayout);
-    topLayout->addWidget(plotImg);
+    topLayout->addWidget(FrameTools::imageParser("img/board.png", 350, 350));
     topLayout->addLayout(rightTopLayout);
     rightTopLayout->addWidget(startButton);
     rightTopLayout->addWidget(loadGameButton);

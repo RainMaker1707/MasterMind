@@ -12,3 +12,12 @@ void FrameTools::centerFrame(QWidget *frame, int width, int height) {
     int y = desktop_height / 2 - height / 2 - 50;
     frame->move(QPoint(x, y));
 }
+
+QLabel *FrameTools::imageParser(const char str[], int width, int height) {
+    QImage img(str);
+    QImage img2 = img.scaled(width, height, Qt::KeepAspectRatio);
+    QLabel *plotImg = new QLabel;
+    plotImg->setScaledContents(true);
+    plotImg->setPixmap(QPixmap::fromImage(img2));
+    return plotImg;
+}

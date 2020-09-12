@@ -14,6 +14,7 @@ class GameFrame : public QMainWindow{
 
     public:
         explicit GameFrame(QWidget *frame);
+        QHBoxLayout *getMainLayout(){return mainLayout;};
 
     private:
         QWidget *frame;
@@ -25,6 +26,7 @@ class GameFrame : public QMainWindow{
         QVBoxLayout *leftLayout;
 
         void closeEvent(QCloseEvent *event) override;
+
 };
 
 
