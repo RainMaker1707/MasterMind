@@ -6,6 +6,7 @@
 #define MASTERMIND_MENUFRAME_H
 
 #include <QtWidgets>
+#include <iostream>
 #include "GameFrame.h"
 #include "FrameTools.h"
 
@@ -19,15 +20,15 @@ class MenuFrame: public QWidget {
 
     public slots:
         void startButtonClicked();
-        void loadButtonClicked();
-        void helpButtonClicked();
-        void parametersButtonClicked();
+        static void loadButtonClicked();
+        static void difficultiesButtonClicked();
+        static void helpButtonClicked();
+        static void parametersButtonClicked();
 
     signals:
 
     private:
         QVBoxLayout *mainLayout;
-        QHBoxLayout *buttonLayout;
         QHBoxLayout *topLayout;
         QVBoxLayout *rightTopLayout;
 
@@ -36,6 +37,7 @@ class MenuFrame: public QWidget {
         QPushButton *loadGameButton;
         QPushButton *helpButton;
         QPushButton *parametersButton;
+        QPushButton *difficultiesButton;
 
         void makeConnection();
 };

@@ -6,7 +6,7 @@
 
 MenuFrame::MenuFrame() : QWidget(){
     // init window
-    setGeometry(0, 0, 600, 400);
+    setGeometry(0, 0, 550, 400);
     setWindowTitle("MasterMind");
 
     // init buttons & layouts
@@ -15,8 +15,8 @@ MenuFrame::MenuFrame() : QWidget(){
     loadGameButton = new QPushButton("Load Game");
     helpButton = new QPushButton("Help");
     parametersButton = new QPushButton("Parameters");
+    difficultiesButton = new QPushButton("Difficulties");
     mainLayout = new QVBoxLayout;
-    buttonLayout = new QHBoxLayout;
     topLayout = new QHBoxLayout;
     rightTopLayout = new QVBoxLayout;
 
@@ -34,9 +34,9 @@ MenuFrame::MenuFrame() : QWidget(){
     topLayout->addLayout(rightTopLayout);
     rightTopLayout->addWidget(startButton);
     rightTopLayout->addWidget(loadGameButton);
-    rightTopLayout->addWidget(helpButton);
-    mainLayout->addLayout(buttonLayout);
+    rightTopLayout->addWidget(difficultiesButton);
     rightTopLayout->addWidget(parametersButton);
+    rightTopLayout->addWidget(helpButton);
     rightTopLayout->addWidget(quitButton);
 
     setupCursors();
@@ -48,7 +48,11 @@ MenuFrame::MenuFrame() : QWidget(){
 
 void MenuFrame::makeConnection() {
     QObject::connect(startButton, SIGNAL(clicked()), this, SLOT(startButtonClicked()));
-    QObject::connect(quitButton, SIGNAL(clicked()), qApp, SLOT(quit()));
+    QObject::connect(loadGameButton, SIGNAL(clicked()), this, SLOT(loadButtonClicked()));
+    QObject::connect(difficultiesButton, SIGNAL(clicked()), this, SLOT(difficultiesButtonClicked()));
+    QObject::connect(parametersButton, SIGNAL(clicked()), this, SLOT(parametersButtonClicked()));
+    QObject::connect(helpButton, SIGNAL(clicked()), this, SLOT(helpButtonClicked()));
+    QObject::connect(quitButton, SIGNAL(clicked()), QCoreApplication::instance(), SLOT(quit()));
 }
 
 void MenuFrame::startButtonClicked() {
@@ -57,22 +61,32 @@ void MenuFrame::startButtonClicked() {
     this->close();
 }
 
-void MenuFrame::loadButtonClicked() {
-
-}
-
-void MenuFrame::helpButtonClicked() {
-
-}
-
-void MenuFrame::parametersButtonClicked() {
-
-}
 
 void MenuFrame::setupCursors() {
     startButton->setCursor(Qt::PointingHandCursor);
     loadGameButton->setCursor(Qt::PointingHandCursor);
-    helpButton->setCursor(Qt::PointingHandCursor);
+    difficultiesButton->setCursor(Qt::PointingHandCursor);
     parametersButton->setCursor(Qt::PointingHandCursor);
+    helpButton->setCursor(Qt::PointingHandCursor);
     quitButton->setCursor(Qt::PointingHandCursor);
+}
+
+void MenuFrame::loadButtonClicked() {
+    // TODO
+    std::cout << "load\n";
+}
+
+void MenuFrame::difficultiesButtonClicked() {
+    // TODO
+    std::cout << "difficulties\n";
+}
+
+void MenuFrame::helpButtonClicked() {
+    // TODO
+    std::cout << "help\n";
+}
+
+void MenuFrame::parametersButtonClicked() {
+    // TODO
+    std::cout << "parameters\n";
 }
