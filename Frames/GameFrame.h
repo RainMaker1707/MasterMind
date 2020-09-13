@@ -6,6 +6,7 @@
 #define MASTERMIND_GAMEFRAME_H
 
 #include <QtWidgets>
+#include <iostream>
 #include "FrameTools.h"
 
 class GameFrame : public QMainWindow{
@@ -14,19 +15,32 @@ class GameFrame : public QMainWindow{
 
     public:
         explicit GameFrame(QWidget *frame);
-        QHBoxLayout *getMainLayout(){return mainLayout;};
+
+    public slots:
+        static void saveGameClicked();
+
 
     private:
         QWidget *frame;
         QWidget *container;
 
-        QHBoxLayout *mainLayout;
-        QVBoxLayout *rightLayout;
-        QVBoxLayout *centerLayout;
-        QVBoxLayout *leftLayout;
+        QMenu *gameMenu;
+        QAction *newGame;
+        QMenu *loadMenu;
+        QAction *saveGame;
+
+        QVBoxLayout *mainLayoutV;
+        QHBoxLayout *mainLayoutH;
+        QGridLayout *leftGrid;
+        QGridLayout *centralGrid;
+        QGridLayout *rightGrid;
+        QHBoxLayout *userLayout;
 
         void closeEvent(QCloseEvent *event) override;
-
+        void setupMenuBar();
+        void setupLoadMenu();
+        void setupLayout();
+        void makeConnection();
 };
 
 

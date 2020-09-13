@@ -10,7 +10,7 @@ MenuFrame::MenuFrame() : QWidget(){
     setWindowTitle("MasterMind");
 
     // init buttons & layouts
-    startButton = new QPushButton("Start Game");
+    startButton = new QPushButton("New Game");
     quitButton = new QPushButton("Quit");
     loadGameButton = new QPushButton("Load Game");
     helpButton = new QPushButton("Help");
@@ -23,7 +23,7 @@ MenuFrame::MenuFrame() : QWidget(){
     // setup and fill layouts
     setLayout(mainLayout);
     mainLayout->addLayout(topLayout);
-    topLayout->addWidget(FrameTools::imageParser("img/board.png", 350, 350));
+    topLayout->addWidget(FrameTools::imageParser("img/board.png", 0.63*width(), 0.875*height()));
     topLayout->addLayout(rightTopLayout);
     rightTopLayout->addWidget(startButton);
     rightTopLayout->addWidget(loadGameButton);
@@ -35,8 +35,6 @@ MenuFrame::MenuFrame() : QWidget(){
     setupCursors();
     makeConnection();
     FrameTools::centerFrame(this, width(), height());
-
-    show();
 }
 
 void MenuFrame::makeConnection() {

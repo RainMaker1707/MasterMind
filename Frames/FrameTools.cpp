@@ -13,7 +13,7 @@ void FrameTools::centerFrame(QWidget *frame, int width, int height) {
     frame->move(QPoint(x, y));
 }
 
-QLabel *FrameTools::imageParser(const char str[], int width, int height) {
+QLabel *FrameTools::imageParser(const char str[], float width, float height) {
     QImage img(str);
     QImage img2 = img.scaled(width, height, Qt::KeepAspectRatio);
     QLabel *plotImg = new QLabel;
