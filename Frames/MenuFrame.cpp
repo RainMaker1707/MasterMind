@@ -4,7 +4,7 @@
 
 #include "MenuFrame.h"
 
-MenuFrame::MenuFrame() : QWidget(){
+MenuFrame::MenuFrame() : QWidget() {
     // init window
     setGeometry(0, 0, 550, 400);
     setWindowTitle("MasterMind");
@@ -20,7 +20,14 @@ MenuFrame::MenuFrame() : QWidget(){
     topLayout = new QHBoxLayout;
     rightTopLayout = new QVBoxLayout;
 
-    // setup and fill layouts
+    setupLayout();
+    setupCursors();
+    makeConnection();
+    FrameTools::centerFrame(this, width(), height());
+}
+
+
+void MenuFrame::setupLayout() {
     setLayout(mainLayout);
     mainLayout->addLayout(topLayout);
     topLayout->addWidget(FrameTools::imageParser("img/board.png", 0.63*width(), 0.875*height()));
@@ -31,11 +38,8 @@ MenuFrame::MenuFrame() : QWidget(){
     rightTopLayout->addWidget(parametersButton);
     rightTopLayout->addWidget(helpButton);
     rightTopLayout->addWidget(quitButton);
-
-    setupCursors();
-    makeConnection();
-    FrameTools::centerFrame(this, width(), height());
 }
+
 
 void MenuFrame::makeConnection() {
     QObject::connect(startButton, SIGNAL(clicked()), this, SLOT(startButtonClicked()));
@@ -45,6 +49,7 @@ void MenuFrame::makeConnection() {
     QObject::connect(helpButton, SIGNAL(clicked()), this, SLOT(helpButtonClicked()));
     QObject::connect(quitButton, SIGNAL(clicked()), QCoreApplication::instance(), SLOT(quit()));
 }
+
 
 void MenuFrame::startButtonClicked() {
     auto frame = new GameFrame(this);
@@ -62,20 +67,24 @@ void MenuFrame::setupCursors() {
     quitButton->setCursor(Qt::PointingHandCursor);
 }
 
+
 void MenuFrame::loadButtonClicked() {
     // TODO
     std::cout << "load\n";
 }
+
 
 void MenuFrame::difficultiesButtonClicked() {
     // TODO
     std::cout << "difficulties\n";
 }
 
+
 void MenuFrame::helpButtonClicked() {
     // TODO
     std::cout << "help\n";
 }
+
 
 void MenuFrame::parametersButtonClicked() {
     // TODO

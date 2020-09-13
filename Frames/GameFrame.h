@@ -35,12 +35,15 @@ class GameFrame : public QMainWindow{
         QGridLayout *centralGrid;
         QGridLayout *rightGrid;
         QHBoxLayout *userLayout;
+        QHBoxLayout *userLayout1;
 
         void closeEvent(QCloseEvent *event) override;
         void setupMenuBar();
         void setupLoadMenu();
         void setupLayout();
         void makeConnection();
+        void setupGrid();
+        void setupUserChoice();
 };
 
 

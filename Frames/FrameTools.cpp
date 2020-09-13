@@ -15,7 +15,7 @@ void FrameTools::centerFrame(QWidget *frame, int width, int height) {
 
 QLabel *FrameTools::imageParser(const char str[], float width, float height) {
     QImage img(str);
-    QImage img2 = img.scaled(width, height, Qt::KeepAspectRatio);
+    QImage img2 = img.scaled((int) width, (int) height, Qt::KeepAspectRatio);
     QLabel *plotImg = new QLabel;
     plotImg->setScaledContents(true);
     plotImg->setPixmap(QPixmap::fromImage(img2));

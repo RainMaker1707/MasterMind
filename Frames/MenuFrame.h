@@ -39,6 +39,7 @@ class MenuFrame: public QWidget {
         QPushButton *parametersButton;
         QPushButton *difficultiesButton;
 
+        void setupLayout();
         void makeConnection();
 };
 
