@@ -10,15 +10,15 @@ MenuFrame::MenuFrame() : QWidget() {
     setWindowTitle("MasterMind");
 
     // init buttons & layouts
-    startButton = new QPushButton("New Game");
-    quitButton = new QPushButton("Quit");
-    loadGameButton = new QPushButton("Load Game");
-    helpButton = new QPushButton("Help");
-    parametersButton = new QPushButton("Parameters");
-    difficultiesButton = new QPushButton("Difficulties");
-    mainLayout = new QVBoxLayout;
-    topLayout = new QHBoxLayout;
-    rightTopLayout = new QVBoxLayout;
+    startButton         = new QPushButton("New Game");
+    quitButton          = new QPushButton("Quit");
+    loadGameButton      = new QPushButton("Load Game");
+    helpButton          = new QPushButton("Help");
+    parametersButton    = new QPushButton("Parameters");
+    difficultiesButton  = new QPushButton("Difficulties");
+    mainLayout          = new QVBoxLayout;
+    topLayout           = new QHBoxLayout;
+    rightTopLayout      = new QVBoxLayout;
 
     setupLayout();
     setupCursors();
