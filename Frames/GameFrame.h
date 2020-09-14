@@ -17,7 +17,13 @@ class GameFrame : public QMainWindow{
         explicit GameFrame(QWidget *frame);
 
     public slots:
-        static void saveGameClicked();
+        void saveGameClicked();
+        void redButtonClicked();
+        void yellowButtonClicked();
+        void blackButtonClicked();
+        void whiteButtonClicked();
+        void blueButtonClicked();
+        void greenButtonClicked();
 
 
     private:
@@ -37,6 +43,21 @@ class GameFrame : public QMainWindow{
         QHBoxLayout *userLayout;
         QHBoxLayout *userLayout1;
 
+        QPushButton *redBall;
+        QPushButton *yellowBall;
+        QPushButton *blackBall;
+        QPushButton *whiteBall;
+        QPushButton *blueBall;
+        QPushButton *greenBall;
+
+        QColor *red;
+        QColor *yellow;
+        QColor *black;
+        QColor *white;
+        QColor *blue;
+        QColor *green;
+
+        void initColor();
         void closeEvent(QCloseEvent *event) override;
         void setupMenuBar();
         void setupLoadMenu();
@@ -44,6 +65,7 @@ class GameFrame : public QMainWindow{
         void makeConnection();
         void setupGrid();
         void setupUserChoice();
+        void colorClicked(QColor *color);
 };
 
 

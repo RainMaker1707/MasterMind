@@ -18,7 +18,20 @@ GameFrame::GameFrame(QWidget *frame): QMainWindow() {
     rightGrid   = new QGridLayout;
     userLayout  = new QHBoxLayout;
     userLayout1 = new QHBoxLayout;
+    redBall    = new QPushButton;
+    yellowBall = new QPushButton;
+    blackBall  = new QPushButton;
+    whiteBall  = new QPushButton;
+    blueBall   = new QPushButton;
+    greenBall  = new QPushButton;
+    red = new QColor;
+    yellow = new QColor;
+    black = new QColor;
+    white = new QColor;
+    blue = new QColor;
+    green = new QColor;
 
+    initColor();
     setupMenuBar();
     setupLoadMenu();
     setCentralWidget(container);
@@ -28,7 +41,7 @@ GameFrame::GameFrame(QWidget *frame): QMainWindow() {
     makeConnection();
     setGeometry(0, 0, 280, 600);
     FrameTools::centerFrame(this, width(), height());
-    QWidget *temp = centralGrid->itemAtPosition(0, 0)->widget();
+    //QWidget *temp = centralGrid->itemAtPosition(0, 0)->widget();
 }
 
 
@@ -74,6 +87,7 @@ void GameFrame::setupLayout(){
     mainLayoutV->addLayout(userLayout);
     mainLayoutV->addLayout(userLayout1);
     leftGrid->setColumnMinimumWidth(0, 40);
+    leftGrid->setRowMinimumHeight(0, 40);
     rightGrid->setColumnMinimumWidth(0, 40);
 }
 
@@ -119,12 +133,6 @@ void GameFrame::setupGrid() {
 
 
 void GameFrame::setupUserChoice() {
-    auto redBall    = new QPushButton;
-    auto yellowBall = new QPushButton;
-    auto blackBall  = new QPushButton;
-    auto whiteBall  = new QPushButton;
-    auto blueBall   = new QPushButton;
-    auto greenBall  = new QPushButton;
     userLayout->addWidget(redBall);
     userLayout->addWidget(yellowBall);
     userLayout->addWidget(blackBall);
@@ -169,10 +177,72 @@ void GameFrame::setupUserChoice() {
 
 void GameFrame::makeConnection() {
     QObject::connect(saveGame, SIGNAL(triggered()), this, SLOT(saveGameClicked()));
+    QObject::connect(redBall, SIGNAL(clicked()), this, SLOT(redButtonClicked()));
+    QObject::connect(yellowBall, SIGNAL(clicked()), this, SLOT(yellowButtonClicked()));
+    QObject::connect(blackBall, SIGNAL(clicked()), this, SLOT(blackButtonClicked()));
+    QObject::connect(whiteBall, SIGNAL(clicked()), this, SLOT(whiteButtonClicked()));
+    QObject::connect(blueBall, SIGNAL(clicked()), this, SLOT(blueButtonClicked()));
+    QObject::connect(greenBall, SIGNAL(clicked()), this, SLOT(greenButtonClicked()));
 }
 
 
 void GameFrame::saveGameClicked() {
     std::cout << "Game Saved\n";
     // TODO really save game
+}
+
+void GameFrame::colorClicked(QColor *color) {
+    QWidget *temp = centralGrid->itemAtPosition(11, 0)->widget();
+    if (color == red) temp->setStyleSheet("background-color: red");
+    else if (color == yellow) temp->setStyleSheet("background-color: yellow");
+    else if (color == black) temp->setStyleSheet("background-color: black");
+    else if (color == white) temp->setStyleSheet("background-color: white");
+    else if (color == blue) temp->setStyleSheet("background-color: blue");
+    else if (color == green) temp->setStyleSheet("background-color: green");
+}
+
+void GameFrame::redButtonClicked() {
+    colorClicked(red);
+}
+
+void GameFrame::yellowButtonClicked() {
+    colorClicked(yellow);
+
+}
+
+void GameFrame::blackButtonClicked() {
+    colorClicked(black);
+}
+
+void GameFrame::whiteButtonClicked() {
+    colorClicked(white);
+}
+
+void GameFrame::blueButtonClicked() {
+    colorClicked(blue);
+}
+
+void GameFrame::greenButtonClicked() {
+    colorClicked(green);
+}
+
+void GameFrame::initColor(){
+    red->setRed(255);
+    red->setBlue(0);
+    red->setGreen(0);
+    yellow->setRed(255);
+    yellow->setBlue(0);
+    yellow->setGreen(255);
+    black->setRed(0);
+    black->setBlue(0);
+    black->setGreen(0);
+    white->setRed(255);
+    white->setBlue(255);
+    white->setGreen(255);
+    blue->setRed(0);
+    blue->setBlue(255);
+    blue->setGreen(0);
+    green->setRed(0);
+    green->setBlue(0);
+    green->setGreen(255);
 }
