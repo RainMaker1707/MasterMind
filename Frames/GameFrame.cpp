@@ -28,6 +28,7 @@ GameFrame::GameFrame(QWidget *frame): QMainWindow() {
     makeConnection();
     setGeometry(0, 0, 280, 600);
     FrameTools::centerFrame(this, width(), height());
+    QWidget *temp = centralGrid->itemAtPosition(0, 0)->widget();
 }
 
 
@@ -118,24 +119,51 @@ void GameFrame::setupGrid() {
 
 
 void GameFrame::setupUserChoice() {
-    auto redBall    = new QPushButton("Red");
-    auto yellowBall = new QPushButton("Yellow");
-    auto blackBall  = new QPushButton("Black");
-    auto whiteBall  = new QPushButton("White");
-    auto blueBall   = new QPushButton("Blue");
-    auto greenBall  = new QPushButton("Green");
+    auto redBall    = new QPushButton;
+    auto yellowBall = new QPushButton;
+    auto blackBall  = new QPushButton;
+    auto whiteBall  = new QPushButton;
+    auto blueBall   = new QPushButton;
+    auto greenBall  = new QPushButton;
     userLayout->addWidget(redBall);
     userLayout->addWidget(yellowBall);
     userLayout->addWidget(blackBall);
     userLayout1->addWidget(whiteBall);
     userLayout1->addWidget(blueBall);
     userLayout1->addWidget(greenBall);
+
     redBall->setCursor(Qt::PointingHandCursor);
     yellowBall->setCursor(Qt::PointingHandCursor);
     blackBall->setCursor(Qt::PointingHandCursor);
     whiteBall->setCursor(Qt::PointingHandCursor);
     blueBall->setCursor(Qt::PointingHandCursor);
     greenBall->setCursor(Qt::PointingHandCursor);
+
+    redBall->setFixedSize(70, 70);
+    yellowBall->setFixedSize(70, 70);
+    blackBall->setFixedSize(70, 70);
+    whiteBall->setFixedSize(70, 70);
+    blueBall->setFixedSize(70, 70);
+    greenBall->setFixedSize(70, 70);
+
+    redBall->setStyleSheet("background-color: red;");
+    yellowBall->setStyleSheet("background-color: yellow;");
+    blackBall->setStyleSheet("background-color: black;");
+    whiteBall->setStyleSheet("background-color: white;");
+    blueBall->setStyleSheet("background-color: blue;");
+    greenBall->setStyleSheet("background-color: green;");
+
+    QRect rect(10, 10, 50, 50);
+    QRegion region(rect, QRegion::Ellipse);
+
+    redBall->setMask(region);
+    yellowBall->setMask(region);
+    blackBall->setMask(region);
+    whiteBall->setMask(region);
+    blueBall->setMask(region);
+    greenBall->setMask(region);
+
+
 }
 
 
