@@ -76,6 +76,9 @@ class GameFrame : public QMainWindow{
 
         int row_ = 0;
         int col_ = 0;
+        int attempts = 0;
+        QColor *combination[4];
+        QColor *answer[4];
 
         void initColor();
         void closeEvent(QCloseEvent *event) override;
@@ -87,7 +90,7 @@ class GameFrame : public QMainWindow{
         void setupUserChoice();
         void colorClicked(QColor *color);
         void checkCombination();
-        void setAnsGridColor(int attempts, int pos, QColor *color);
+        void setAnsGridColor(int pos, QColor *color);
 };
 
 

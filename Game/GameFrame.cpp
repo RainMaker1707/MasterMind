@@ -14,7 +14,6 @@ GameFrame::GameFrame(QWidget *frame): QMainWindow() {
     languageAction      = new QAction;
     difficultiesAction  = new QAction;
     helpAction          = new QAction;
-
     container   = new QWidget;
     mainLayoutV = new QVBoxLayout;
     mainLayoutH = new QHBoxLayout;
@@ -37,6 +36,11 @@ GameFrame::GameFrame(QWidget *frame): QMainWindow() {
     green       = new QColor;
 
     initColor();
+    for (int i = 0; i < 4; i++){
+        combination[i] = nullptr;
+        answer[i] = red;
+    }
+    std::cout << answer[3]->red();
     setupMenuBar();
     setupLoadMenu();
     setCentralWidget(container);
@@ -46,8 +50,6 @@ GameFrame::GameFrame(QWidget *frame): QMainWindow() {
     makeConnection();
     setGeometry(0, 0, 280, 600);
     GameTool::centerFrame(this, width(), height());
-    //setAnsGridColor(0, 0, red);
-    //setAnsGridColor(1, 1, white);
 }
 
 
@@ -209,12 +211,15 @@ void GameFrame::newGameClicked(){
 
 void GameFrame::colorClicked(QColor *color) {
     QWidget *temp = centralGrid->itemAtPosition(11 - col_, row_)->widget();
-    if (row_ < 3) row_++;
-    else{
+    combination[row_] = color;
+    if (row_ < 3) {
+        row_++;
+    }else{
         checkCombination();
         row_ = 0;
         if (col_ < 11) col_++;
         else col_ = 0;
+        attempts++;
     }
     if (color == red) temp->setStyleSheet("background-color: red");
     else if (color == yellow) temp->setStyleSheet("background-color: yellow");
@@ -271,10 +276,13 @@ void GameFrame::initColor(){
 }
 
 void GameFrame::checkCombination() {
-    this->frame->height();
+    // std::cout << combination[0]->blue(); std::cout << combination[0]->red(); std::cout << combination[0]->green();
+    if (combination[0] == answer[0] && combination[1] == answer[1] && combination[2] == answer [2] && combination[3] == answer[3]) {
+        for (int i = 0; i < 4; i++) setAnsGridColor(i, red);
+    }
 }
 
-void GameFrame::setAnsGridColor(int attempts, int pos, QColor *color) {
+void GameFrame::setAnsGridColor(int pos, QColor *color) {
     QWidget *temp;
     if ((11-attempts)%2 == 0) temp = leftGrid->itemAtPosition(11-attempts, 0)->widget()->layout()->itemAt(pos)->widget();
     else temp = rightGrid->itemAtPosition(11-attempts, 0)->widget()->layout()->itemAt(pos)->widget();
