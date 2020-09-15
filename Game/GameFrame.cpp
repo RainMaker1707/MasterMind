@@ -280,8 +280,4 @@ void GameFrame::setAnsGridColor(int attempts, int pos, QColor *color) {
     else temp = rightGrid->itemAtPosition(11-attempts, 0)->widget()->layout()->itemAt(pos)->widget();
     if (color == red) temp->setStyleSheet("background-color: red");
     else if (color == white) temp->setStyleSheet("background-color: white");
-
-    //rightGrid->itemAtPosition(11, 0)->widget()->layout()->itemAt(0)->widget()->setStyleSheet("background-color: red;");
-    //rightGrid->itemAtPosition(11, 0)->widget()->layout()->itemAt(1)->widget()->setStyleSheet("background-color: white;");
-    //rightGrid->itemAtPosition(11, 0)->widget()->layout()->itemAt(2)->widget()->setStyleSheet("background-color: white;");
 }
