@@ -6,10 +6,15 @@
 GameFrame::GameFrame(QWidget *frame): QMainWindow() {
     this->frame = frame;
     setWindowTitle("MasterMind Game Board");
-    gameMenu    = new QMenu;
-    newGame     = new QAction;
-    saveGame    = new QAction;
-    loadMenu    = new QMenu;
+    gameMenu            = new QMenu;
+    newGame             = new QAction;
+    saveGame            = new QAction;
+    loadMenu            = new QMenu;
+    parametersMenu      = new QMenu;
+    languageAction      = new QAction;
+    difficultiesAction  = new QAction;
+    helpAction          = new QAction;
+
     container   = new QWidget;
     mainLayoutV = new QVBoxLayout;
     mainLayoutH = new QHBoxLayout;
@@ -18,18 +23,18 @@ GameFrame::GameFrame(QWidget *frame): QMainWindow() {
     rightGrid   = new QGridLayout;
     userLayout  = new QHBoxLayout;
     userLayout1 = new QHBoxLayout;
-    redBall    = new QPushButton;
-    yellowBall = new QPushButton;
-    blackBall  = new QPushButton;
-    whiteBall  = new QPushButton;
-    blueBall   = new QPushButton;
-    greenBall  = new QPushButton;
-    red = new QColor;
-    yellow = new QColor;
-    black = new QColor;
-    white = new QColor;
-    blue = new QColor;
-    green = new QColor;
+    redBall     = new QPushButton;
+    yellowBall  = new QPushButton;
+    blackBall   = new QPushButton;
+    whiteBall   = new QPushButton;
+    blueBall    = new QPushButton;
+    greenBall   = new QPushButton;
+    red         = new QColor;
+    yellow      = new QColor;
+    black       = new QColor;
+    white       = new QColor;
+    blue        = new QColor;
+    green       = new QColor;
 
     initColor();
     setupMenuBar();
@@ -41,7 +46,6 @@ GameFrame::GameFrame(QWidget *frame): QMainWindow() {
     makeConnection();
     setGeometry(0, 0, 280, 600);
     FrameTools::centerFrame(this, width(), height());
-    //QWidget *temp = centralGrid->itemAtPosition(0, 0)->widget();
 }
 
 
@@ -61,6 +65,10 @@ void GameFrame::setupMenuBar() {
     saveGame = gameMenu->addAction("&Save Game");
     newGame->setShortcut(QKeySequence("Ctrl+N"));
     saveGame->setShortcut(QKeySequence("Ctrl+S"));
+    parametersMenu = menuBar()->addMenu("&Parameters");
+    languageAction = parametersMenu->addAction("&Language");
+    difficultiesAction = parametersMenu->addAction("&Difficulties");
+    helpAction = parametersMenu->addAction("&Help");
 }
 
 
@@ -95,10 +103,10 @@ void GameFrame::setupLayout(){
 void GameFrame::setupGrid() {
     for (int  col=0; col<4; col++) centralGrid->setColumnMinimumWidth(col, 40);
     for (int row = 0; row < 12; row++){
+        auto ansGrid     = new QGridLayout;
+        auto ansWdg      = new QWidget;
+        auto ansNoWdg    = new QWidget;
         centralGrid->setRowMinimumHeight(row, 40);
-        auto ansGrid  = new QGridLayout;
-        auto ansWdg   = new QWidget;
-        auto ansNoWdg = new QWidget;
         ansWdg->setStyleSheet("background-color: gray;");
         ansWdg->setLayout(ansGrid);
         for (int i=0; i<2; i++) {
@@ -127,7 +135,6 @@ void GameFrame::setupGrid() {
             auto cellLayout = new QHBoxLayout;
             wdg->setLayout(cellLayout);
         }
-
     }
 }
 
@@ -177,12 +184,14 @@ void GameFrame::setupUserChoice() {
 
 void GameFrame::makeConnection() {
     QObject::connect(saveGame, SIGNAL(triggered()), this, SLOT(saveGameClicked()));
+    QObject::connect(newGame, SIGNAL(triggered()), this, SLOT(newGameClicked()));
     QObject::connect(redBall, SIGNAL(clicked()), this, SLOT(redButtonClicked()));
     QObject::connect(yellowBall, SIGNAL(clicked()), this, SLOT(yellowButtonClicked()));
     QObject::connect(blackBall, SIGNAL(clicked()), this, SLOT(blackButtonClicked()));
     QObject::connect(whiteBall, SIGNAL(clicked()), this, SLOT(whiteButtonClicked()));
     QObject::connect(blueBall, SIGNAL(clicked()), this, SLOT(blueButtonClicked()));
     QObject::connect(greenBall, SIGNAL(clicked()), this, SLOT(greenButtonClicked()));
+    QObject::connect(this, SIGNAL(newGameSignal()), this->frame, SLOT(startButtonClicked()));
 }
 
 
@@ -191,8 +200,20 @@ void GameFrame::saveGameClicked() {
     // TODO really save game
 }
 
+void GameFrame::newGameClicked(){
+    this->close();
+    emit newGameSignal();
+}
+
 void GameFrame::colorClicked(QColor *color) {
-    QWidget *temp = centralGrid->itemAtPosition(11, 0)->widget();
+    QWidget *temp = centralGrid->itemAtPosition(11 - col_, row_)->widget();
+    if (row_ < 3) row_++;
+    else{
+        checkCombination();
+        row_ = 0;
+        if (col_ < 11) col_++;
+        else col_ = 0;
+    }
     if (color == red) temp->setStyleSheet("background-color: red");
     else if (color == yellow) temp->setStyleSheet("background-color: yellow");
     else if (color == black) temp->setStyleSheet("background-color: black");
@@ -245,4 +266,8 @@ void GameFrame::initColor(){
     green->setRed(0);
     green->setBlue(0);
     green->setGreen(255);
+}
+
+void GameFrame::checkCombination() {
+    this->frame->height();
 }

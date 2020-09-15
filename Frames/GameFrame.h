@@ -5,7 +5,16 @@
 #ifndef MASTERMIND_GAMEFRAME_H
 #define MASTERMIND_GAMEFRAME_H
 
-#include <QtWidgets>
+#include <QWidget>
+#include <QPushButton>
+#include <QMenu>
+#include <QAction>
+#include <QApplication>
+#include <QGridLayout>
+#include <QVBoxLayout>
+#include <QHBoxLayout>
+#include <QColor>
+#include <QObject>
 #include <iostream>
 #include "FrameTools.h"
 
@@ -17,13 +26,17 @@ class GameFrame : public QMainWindow{
         explicit GameFrame(QWidget *frame);
 
     public slots:
-        void saveGameClicked();
+        static void saveGameClicked();
+        void newGameClicked();
         void redButtonClicked();
         void yellowButtonClicked();
         void blackButtonClicked();
         void whiteButtonClicked();
         void blueButtonClicked();
         void greenButtonClicked();
+
+    signals:
+        void newGameSignal();
 
 
     private:
@@ -34,6 +47,10 @@ class GameFrame : public QMainWindow{
         QAction *newGame;
         QMenu *loadMenu;
         QAction *saveGame;
+        QMenu *parametersMenu;
+        QAction *languageAction;
+        QAction *difficultiesAction;
+        QAction *helpAction;
 
         QVBoxLayout *mainLayoutV;
         QHBoxLayout *mainLayoutH;
@@ -57,6 +74,9 @@ class GameFrame : public QMainWindow{
         QColor *blue;
         QColor *green;
 
+        int row_ = 0;
+        int col_ = 0;
+
         void initColor();
         void closeEvent(QCloseEvent *event) override;
         void setupMenuBar();
@@ -66,6 +86,7 @@ class GameFrame : public QMainWindow{
         void setupGrid();
         void setupUserChoice();
         void colorClicked(QColor *color);
+        void checkCombination();
 };
 
 

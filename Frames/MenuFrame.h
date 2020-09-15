@@ -5,7 +5,11 @@
 #ifndef MASTERMIND_MENUFRAME_H
 #define MASTERMIND_MENUFRAME_H
 
-#include <QtWidgets>
+#include <QWidget>
+#include <QVBoxLayout>
+#include <QHBoxLayout>
+#include <QPushButton>
+#include <QObject>
 #include <iostream>
 #include "GameFrame.h"
 #include "FrameTools.h"
