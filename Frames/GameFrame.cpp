@@ -46,6 +46,9 @@ GameFrame::GameFrame(QWidget *frame): QMainWindow() {
     makeConnection();
     setGeometry(0, 0, 280, 600);
     FrameTools::centerFrame(this, width(), height());
+    //leftGrid->itemAtPosition(0, 0)->widget()->layout()->itemAt(0)->widget()->setStyleSheet("background-color: red;");
+    //leftGrid->itemAtPosition(0, 0)->widget()->layout()->itemAt(1)->widget()->setStyleSheet("background-color: white;");
+    //leftGrid->itemAtPosition(0, 0)->widget()->layout()->itemAt(2)->widget()->setStyleSheet("background-color: white;");
 }
 
 
