@@ -1,4 +1,4 @@
-#include "Frames/MenuFrame.h"
+#include "Game/MenuFrame.h"
 
 int main(int argc, char *argv[]) {
     QApplication app(argc, argv);

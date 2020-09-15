@@ -12,7 +12,7 @@
 #include <QObject>
 #include <iostream>
 #include "GameFrame.h"
-#include "FrameTools.h"
+#include "GameTool.h"
 
 class MenuFrame: public QWidget {
 

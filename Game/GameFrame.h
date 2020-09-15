@@ -16,7 +16,7 @@
 #include <QColor>
 #include <QObject>
 #include <iostream>
-#include "FrameTools.h"
+#include "GameTool.h"
 
 class GameFrame : public QMainWindow{
 
@@ -87,6 +87,7 @@ class GameFrame : public QMainWindow{
         void setupUserChoice();
         void colorClicked(QColor *color);
         void checkCombination();
+        void setAnsGridColor(int attempts, int pos, QColor *color);
 };
 
 

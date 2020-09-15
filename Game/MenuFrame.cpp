@@ -23,14 +23,14 @@ MenuFrame::MenuFrame() : QWidget() {
     setupLayout();
     setupCursors();
     makeConnection();
-    FrameTools::centerFrame(this, width(), height());
+    GameTool::centerFrame(this, width(), height());
 }
 
 
 void MenuFrame::setupLayout() {
     setLayout(mainLayout);
     mainLayout->addLayout(topLayout);
-    topLayout->addWidget(FrameTools::imageParser("img/board.png", 0.63*width(), 0.875*height()));
+    topLayout->addWidget(GameTool::imageParser("img/board.png", 0.63*width(), 0.875*height()));
     topLayout->addLayout(rightTopLayout);
     rightTopLayout->addWidget(startButton);
     rightTopLayout->addWidget(loadGameButton);

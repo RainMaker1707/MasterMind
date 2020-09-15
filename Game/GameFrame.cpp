@@ -45,10 +45,9 @@ GameFrame::GameFrame(QWidget *frame): QMainWindow() {
     setupUserChoice();
     makeConnection();
     setGeometry(0, 0, 280, 600);
-    FrameTools::centerFrame(this, width(), height());
-    //leftGrid->itemAtPosition(0, 0)->widget()->layout()->itemAt(0)->widget()->setStyleSheet("background-color: red;");
-    //leftGrid->itemAtPosition(0, 0)->widget()->layout()->itemAt(1)->widget()->setStyleSheet("background-color: white;");
-    //leftGrid->itemAtPosition(0, 0)->widget()->layout()->itemAt(2)->widget()->setStyleSheet("background-color: white;");
+    GameTool::centerFrame(this, width(), height());
+    //setAnsGridColor(0, 0, red);
+    //setAnsGridColor(1, 1, white);
 }
 
 
@@ -273,4 +272,16 @@ void GameFrame::initColor(){
 
 void GameFrame::checkCombination() {
     this->frame->height();
+}
+
+void GameFrame::setAnsGridColor(int attempts, int pos, QColor *color) {
+    QWidget *temp;
+    if ((11-attempts)%2 == 0) temp = leftGrid->itemAtPosition(11-attempts, 0)->widget()->layout()->itemAt(pos)->widget();
+    else temp = rightGrid->itemAtPosition(11-attempts, 0)->widget()->layout()->itemAt(pos)->widget();
+    if (color == red) temp->setStyleSheet("background-color: red");
+    else if (color == white) temp->setStyleSheet("background-color: white");
+
+    //rightGrid->itemAtPosition(11, 0)->widget()->layout()->itemAt(0)->widget()->setStyleSheet("background-color: red;");
+    //rightGrid->itemAtPosition(11, 0)->widget()->layout()->itemAt(1)->widget()->setStyleSheet("background-color: white;");
+    //rightGrid->itemAtPosition(11, 0)->widget()->layout()->itemAt(2)->widget()->setStyleSheet("background-color: white;");
 }

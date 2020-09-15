@@ -2,9 +2,9 @@
 // Created by RainMaker on 2020-09-11.
 //
 
-#include "FrameTools.h"
+#include "GameTool.h"
 
-void FrameTools::centerFrame(QWidget *frame, int width, int height) {
+void GameTool::centerFrame(QWidget *frame, int width, int height) {
     QDesktopWidget *widget = QApplication::desktop();
     int desktop_width = widget->width();
     int desktop_height = widget->height();
@@ -13,7 +13,7 @@ void FrameTools::centerFrame(QWidget *frame, int width, int height) {
     frame->move(QPoint(x, y));
 }
 
-QLabel *FrameTools::imageParser(const char str[], float width, float height) {
+QLabel *GameTool::imageParser(const char str[], float width, float height) {
     QImage img(str);
     QImage img2 = img.scaled((int) width, (int) height, Qt::KeepAspectRatio);
     QLabel *plotImg = new QLabel;
